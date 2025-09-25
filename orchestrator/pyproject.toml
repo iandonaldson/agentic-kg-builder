@@ -1,0 +1,4 @@
+[project]
+name = "orchestrator"
+version = "0.1.0"
+description = "Orchestrator for agentic KG builder"

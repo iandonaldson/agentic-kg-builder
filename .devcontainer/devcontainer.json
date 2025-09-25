@@ -1,0 +1,6 @@
+{
+  "name": "Agentic KG Builder Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/python:3.10",
+  "features": {},
+  "postCreateCommand": "bash .devcontainer/postCreateCommand.sh"
+}

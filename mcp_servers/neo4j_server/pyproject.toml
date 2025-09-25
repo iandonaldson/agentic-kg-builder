@@ -1,0 +1,4 @@
+[project]
+name = "neo4j_server"
+version = "0.1.0"
+description = "Neo4j server for Cypher and bulk upsert tools"

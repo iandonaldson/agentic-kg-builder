@@ -1,0 +1,4 @@
+[project]
+name = "content_server"
+version = "0.1.0"
+description = "Content server for parsing and NER/REL tools"
