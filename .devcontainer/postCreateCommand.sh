@@ -1,4 +1,5 @@
-#!/bin/bash
-# Post-create setup for devcontainer
-set -e
-# Add any setup commands here
+#!/usr/bin/env bash
+set -euo pipefail
+pip install --upgrade pip
+pip install black pytest httpx pydantic
+

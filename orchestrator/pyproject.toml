@@ -1,4 +1,16 @@
 [project]
-name = "orchestrator"
+name = "agentic-kg-orchestrator"
 version = "0.1.0"
-description = "Orchestrator for agentic KG builder"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2",
+  "httpx>=0.27",
+  "tenacity>=8.4",
+  "pyyaml>=6",
+  "pytest>=8",
+  "black>=24",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+

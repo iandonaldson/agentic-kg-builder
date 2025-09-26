@@ -1,9 +1,41 @@
-version: '3.8'
+version: "3.9"
 services:
   neo4j:
-    image: neo4j:latest
+    image: neo4j:5.24
+    container_name: kg_neo4j
+    environment:
+      - NEO4J_AUTH=${NEO4J_AUTH:-neo4j/test}
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4JLABS_PLUGINS=["apoc"]
+    volumes:
+      - neo4j_data:/data
+      - ./docker/neo4j/neo4j.conf:/config/neo4j.conf
     ports:
       - "7474:7474"
       - "7687:7687"
-    volumes:
-      - ./docker/neo4j/neo4j.conf:/conf/neo4j.conf
+    command: ["neo4j", "start", "--config-dir=/config"]
+
+  mcp_content:
+    build:
+      context: ./mcp_servers/content_server
+    container_name: mcp_content
+    env_file: ./configs/.env.example
+    ports:
+      - "3001:3001"
+
+  mcp_neo4j:
+    build:
+      context: ./mcp_servers/neo4j_server
+    container_name: mcp_neo4j
+    env_file: ./configs/.env.example
+    environment:
+      - NEO4J_URL=bolt://neo4j:7687
+      - NEO4J_AUTH=${NEO4J_AUTH:-neo4j/test}
+    depends_on:
+      - neo4j
+    ports:
+      - "3002:3002"
+
+volumes:
+  neo4j_data:
+
